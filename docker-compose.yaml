@@ -24,12 +24,15 @@ services:
     depends_on:
       familie-db:
         condition: service_healthy
+    volumes:
+      - ./:/src
     command:
       - /bin/sh
       - -c
       - |
         psql -c "CREATE USER familie_rbk"
         psql -c "CREATE DATABASE receipebook OWNER familie_rbk"
+        psql -U familie_rbk -d receipebook -f /src/server/sql/init.sql
     networks:
       - familie
 
