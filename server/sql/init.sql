@@ -1,13 +1,13 @@
 CREATE EXTENSION "pgcrypto";
 
 CREATE TABLE email (
-                       id uuid NOT NULL DEFAULT gen_random_uuid(),
-                       address character varying NOT NULL,
-                       verified boolean NOT NULL DEFAULT false,
-                       created timestamp with time zone NOT NULL DEFAULT clock_timestamp(),
-                       updated timestamp with time zone NOT NULL DEFAULT clock_timestamp(),
-                       deleted boolean NOT NULL DEFAULT false,
-                       CONSTRAINT email_pk PRIMARY KEY (id)
+    id uuid NOT NULL DEFAULT gen_random_uuid(),
+    address character varying NOT NULL,
+    verified boolean NOT NULL DEFAULT false,
+    created timestamp with time zone NOT NULL DEFAULT clock_timestamp(),
+    updated timestamp with time zone NOT NULL DEFAULT clock_timestamp(),
+    deleted boolean NOT NULL DEFAULT false,
+    CONSTRAINT email_pk PRIMARY KEY (id)
 );
 CREATE UNIQUE INDEX email_address_idx
     ON email USING btree (address);
